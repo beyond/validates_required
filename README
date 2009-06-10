@@ -1,0 +1,40 @@
+ValidatesRequired
+=================
+
+　validates_presence_of を制御するプラグインです。
+  [attr_name]_required が、true の時のみ、validates_presence_of のチェックが行われます。
+
+　特定の場合のみ必須項目の入力チェックをしたいときに使ってください。
+
+Example
+=======
+example1:
+  class Entry
+    validates_required :title
+  end
+
+  entry = Entry.new
+  entry.save                  # => true
+
+  entry.title_required = true
+  entry.save                  # => false
+
+  entry.title = "new title"
+  entry.save                  # => true
+
+example2:
+  class Entry
+    validates_required :title
+  end
+
+  entry = Entry.create!       # success
+  entry = Entry.create!( 
+            :title_required => true )       # fail
+  entry = Entry.create!( 
+            :title => "new title",
+            :title_required => true )       # sucess
+
+Example goes here.
+
+
+Copyright (c) 2009 Beyond, released under the MIT license
